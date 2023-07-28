@@ -1,0 +1,40 @@
+.inputBlock {
+    width: 100%;
+
+    padding: var(--standart-padding);
+
+    .customInput {
+        width: 100%;
+
+        padding: 10px 16px;
+
+        border: 1px solid var(--text-60);
+        border-radius: var(--standart-border-radius);
+    }
+    .inputBlockIcons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-top: 4px;
+
+        .clipButton,
+        .sendButton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 32px;
+            height: 32px;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        .clipButton {
+            background-color: rgba(32, 31, 30, 0.04);
+            border-radius: var(--standart-border-radius);
+        }
+        .sendButton {
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.component__avatar {
+    display: flex;
+    & img {
+        border-radius: var(--standart-border-radius);
+    }
+    &_sm {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--standart-border-radius);
+    }
+
+    &_md {
+        border-radius: var(--standart-border-radius);
+        width: 48px;
+        height: 48px;
+    }
+}

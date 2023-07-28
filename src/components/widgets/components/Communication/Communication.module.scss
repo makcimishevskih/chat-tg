@@ -1,0 +1,7 @@
+.communication {
+    flex: 1;
+    .chat {
+        padding: var(--standart-padding);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
