@@ -17,6 +17,7 @@ const root = createRoot(document.getElementById('root')!);
 // 5. loader
 // 6. error boundary
 // 7. pages main 404
+
 root.render(
     <StrictMode>
         <Provider store={store}>

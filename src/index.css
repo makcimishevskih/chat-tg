@@ -12,6 +12,9 @@ input {
     border: none;
     outline: none;
 }
+html {
+    overflow: hidden;
+}
 
 :root {
     /* Colors */

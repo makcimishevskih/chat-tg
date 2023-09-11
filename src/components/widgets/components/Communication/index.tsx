@@ -9,8 +9,9 @@ import { wrapper } from '../../../../utils/wrapper';
 import Header from '../../../shared/components/Header';
 import Input from '../../../shared/components/Input';
 import Message from '../../../shared/components/Message';
-
-// const dayjs = require('dayjs');
+import {
+    dateTransformToLocal,
+} from '../../../../utils/dateTransform';
 
 const Communication: FC = () => {
     const dispatch = useAppDispatch();
@@ -32,6 +33,20 @@ const Communication: FC = () => {
         }
     }, [selectedChat]);
 
+    const messagesDateFilter = messages?.map(({ id, created_at }, i) => ({
+        id,
+        date: dateTransformToLocal(created_at),
+    }));
+
+    const datesToRender = messagesDateFilter.reduceRight(
+        (acc: any, { date, id }: any) => {
+            const resultDate = acc[date];
+            if (!acc[resultDate]) acc[date] = id;
+            return acc;
+        },
+        {}
+    );
+
     return (
         <section className={css.communication}>
             {selectedChat ? <Header title={selectedChat.title} /> : null}
@@ -43,12 +58,18 @@ const Communication: FC = () => {
                                   id,
                                   created_at,
                                   message,
-                                  is_new,
                                   user: { name, surname, avatar, you },
                               },
                               i
                           ) => (
                               <Message
+                              
+                                  isShowDate={
+                                      id ===
+                                      datesToRender[
+                                          dateTransformToLocal(created_at)
+                                      ]
+                                  }
                                   newMessage={i === newMessageElemIndex}
                                   key={id}
                                   id={id}
@@ -58,8 +79,6 @@ const Communication: FC = () => {
                                   isMe={you}
                                   createdAt={created_at}
                                   message={message}
-                                  isNew={is_new}
-                                  showDate={false}
                               />
                           )
                       )

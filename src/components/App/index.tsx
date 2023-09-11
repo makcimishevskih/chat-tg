@@ -26,7 +26,6 @@ function App() {
 
             <Communication />
 
-            {/* <PageIndex /> */}
         </div>
     );
 }

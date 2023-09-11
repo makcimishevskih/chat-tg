@@ -1,6 +1,6 @@
 import css from './Input.module.scss';
 
-import { ChangeEvent, FC, RefObject, useRef } from 'react';
+import { ChangeEvent, FC, RefObject, useRef, useState } from 'react';
 
 import clip from '../../../../assets/clip.svg';
 import send from '../../../../assets/send.svg';
@@ -11,17 +11,17 @@ interface IInputProps {
 }
 
 const Input: FC<IInputProps> = props => {
-    const InputRef = useRef(null) as RefObject<HTMLParagraphElement>;
+    const [value, setValue] = useState('');
+    const InputRef = useRef<HTMLInputElement>(null);
 
-    const handleChange = (e: ChangeEvent<HTMLParagraphElement>) => {
-        console.log(e.target);
+    const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
     };
 
     return (
         <div className={css.inputBlock}>
-            <p ref={InputRef} className={css.customInput}>
-                Type Message...
-            </p>
+            <input placeholder={'Type Message...'} value={value} onChange={handleChange} ref={InputRef} className={css.customInput}/>
+            
             <div className={css.inputBlockIcons}>
                 <button className={css.clipButton}>
                     <img src={clip} alt="clip" />

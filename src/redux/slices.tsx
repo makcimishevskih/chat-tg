@@ -2,10 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface IMessageState {
-    chats: IChat[]; // ИЗМЕНИТЬ
-    messages: any[]; // ИЗМЕНИТЬ
-    // activeChat: Partial<IChat>; // activeChar: string | number;
-    activeChat: string; // activeChar: string | number;
+    chats: IChat[];
+    messages: IMessage[];
+    activeChat: string;
 }
 
 export interface IMessage {
@@ -66,11 +65,11 @@ export const messageSlice = createSlice({
         },
         getMessages: (state, action: PayloadAction<IMessage[]>) => {
             state.messages = action.payload.reverse();
+            console.log(state.messages);
         },
     },
 });
 
-// Action creators are generated for each case reducer function
 export const { initialChats, changeActiveChar, getMessages } =
     messageSlice.actions;
 

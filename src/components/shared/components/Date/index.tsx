@@ -1,20 +1,37 @@
 import css from './Date.module.scss';
 
-import { FC } from 'react';
-import { addZero } from '../../../../utils/addZero';
+import { FC, ReactNode } from 'react';
 
 interface IDateProps {
-    date: number;
+    date: string;
+    src?: string;
+    children?: ReactNode;
+    isTime?: boolean;
+    styleProps?: object;
 }
 
-const DateComponent: FC<IDateProps> = ({ date }) => {
-    const day = new Date(date).getDate();
-    const month = new Date(date).getMonth() + 1;
-    const year = new Date(date).getFullYear();
+const DateComponent: FC<IDateProps> = ({
+    src,
+    date,
+    isTime = true,
+    children,
+    styleProps
+}) => {
+
+    const styles = isTime
+        ? undefined
+        : {
+              padding: '8px 16px',
+              width: 100,
+              margin: '12px auto 0',
+              background: 'var(--main-color-light)',
+          };
 
     return (
-        <div className={css.date}>
-            {day}.{month}.{year}
+        <div className={css.dateBlock} style={{...styles, ...styleProps}}>
+            {children}
+            <span className={css.date}>{date}</span>
+            {src ? <img src={src} alt="icon" /> : null}
         </div>
     );
 };
